@@ -1,0 +1,69 @@
+﻿using GamesStore_11883_API.Models;
+using GamesStore_11883_API.Repository;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Transactions;
+
+namespace GamesStore_11883_API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class GameController : ControllerBase
+    {
+        private readonly IGameRepository _gameRepository;
+        public GameController(IGameRepository gameRepository)
+        {
+            _gameRepository = gameRepository;
+        }
+
+        // GET: api/Game
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var games = _gameRepository.GetGames();
+            return new OkObjectResult(games);
+            //return new string[] { "value1", "value2" };
+        }
+        // GET: api/Game/5
+        [HttpGet, Route("{id}", Name = "GetP")]
+        public IActionResult Get(int id)
+        {
+            var game = _gameRepository.GetGameById(id);
+            return new OkObjectResult(game);
+            //return "value";
+        }
+        // POST: api/Game
+        [HttpPost]
+        public IActionResult Post([FromBody] Game game)
+        {
+            using (var scope = new TransactionScope())
+            {
+                _gameRepository.InsertGame(game);
+                scope.Complete();
+                return CreatedAtAction(nameof(Get), new { id = game.ID }, game);
+            }
+        }
+        // PUT: api/Game/5
+        [HttpPut("{id}")]
+        public IActionResult Put([FromBody] Game game)
+        {
+            if (game != null)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    _gameRepository.UpdateGame(game);
+                    scope.Complete();
+                    return new OkResult();
+                }
+            }
+            return new NoContentResult();
+        }
+        // DELETE: api/Game/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _gameRepository.DeleteGame(id);
+            return new OkResult();
+        }
+    }
+}
