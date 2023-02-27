@@ -1,5 +1,6 @@
 ﻿using GamesStore_11883_API.Context;
 using GamesStore_11883_API.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,8 +35,8 @@ namespace GamesStore_11883_API.Repository
         }
         public void UpdateAuthor(Author author)
         {
-            _dbContext.Entry(author).State =
-           Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _dbContext.Entry(author).State = EntityState.Modified;
+            Save();
         }
         // DRY Principle
         public void Save()
