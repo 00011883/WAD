@@ -22,15 +22,13 @@ namespace GamesStore_11883_API.Controllers
         {
             var games = _gameRepository.GetGames();
             return new OkObjectResult(games);
-            //return new string[] { "value1", "value2" };
         }
         // GET: api/Game/5
-        [HttpGet, Route("{id}", Name = "GetP")]
+        [HttpGet, Route("{id}")]
         public IActionResult Get(int id)
         {
             var game = _gameRepository.GetGameById(id);
             return new OkObjectResult(game);
-            //return "value";
         }
         // POST: api/Game
         [HttpPost]
@@ -53,7 +51,7 @@ namespace GamesStore_11883_API.Controllers
                 {
                     _gameRepository.UpdateGame(game);
                     scope.Complete();
-                    return new OkResult();
+                    return new OkObjectResult(new { message = "Successfuly Updated", status = 202 });
                 }
             }
             return new NoContentResult();
@@ -63,7 +61,7 @@ namespace GamesStore_11883_API.Controllers
         public IActionResult Delete(int id)
         {
             _gameRepository.DeleteGame(id);
-            return new OkResult();
+            return new OkObjectResult( new { message="Successfuly Deteled", status = 204 });
         }
     }
 }

@@ -23,7 +23,7 @@ namespace GamesStore_11883_API.Controllers
             return new OkObjectResult(author);
         }
         // GET: api/Author/5
-        [HttpGet("{id}", Name = "GetA")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var author = _authorRepository.GetAuthorById(id);
@@ -50,7 +50,7 @@ namespace GamesStore_11883_API.Controllers
                 {
                     _authorRepository.UpdateAuthor(author);
                     scope.Complete();
-                    return new OkResult();
+                    return new OkObjectResult(new { message = "Successfuly Updated", status = 202 });
                 }
             }
             return new NoContentResult();
@@ -60,7 +60,7 @@ namespace GamesStore_11883_API.Controllers
         public IActionResult Delete(int id)
         {
             _authorRepository.DeleteAuthor(id);
-            return new OkResult();
+            return new OkObjectResult(new { message = "Successfuly Deteled", status = 204 });
         }
     }
 }
