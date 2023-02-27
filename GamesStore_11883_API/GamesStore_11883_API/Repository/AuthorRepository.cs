@@ -14,14 +14,14 @@ namespace GamesStore_11883_API.Repository
         }
         public void DeleteAuthor(int authorid)
         {
-            var category = _dbContext.Authors.Find(authorid);
-            _dbContext.Authors.Remove(category);
+            var author = _dbContext.Authors.Find(authorid);
+            _dbContext.Authors.Remove(author);
             Save();
         }
         public Author GetAuthorById(int Id)
         {
-            var cate = _dbContext.Authors.Find(Id);
-            return cate;
+            var author = _dbContext.Authors.Find(Id);
+            return author;
         }
         public IEnumerable<Author> GetAuthor()
         {

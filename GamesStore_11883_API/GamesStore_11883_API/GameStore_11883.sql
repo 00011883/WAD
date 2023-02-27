@@ -1,13 +1,13 @@
 ﻿use GameAPIDB
 go
 insert into [dbo].[Authors]
-([Name], [Description])
-values ('Riot Games Testers', 'Modern and revolutionary game development studio')
+([Name], [Description], [PosterUrl])
+values ('Riot Games Testers', 'Modern and revolutionary game development studio', '')
 
 go
 insert into [dbo].[Games]
-([Name], [Description], [Price], [AuthorID])
-values ('Valorant', '5 vs 5 Shooter Game', 150, 2)
+([Name], [Description], [Price], [PosterUrl], [AuthorID])
+values ('Valorant', '5 vs 5 Shooter Game', 150, '', 1)
 go
 
 select *
