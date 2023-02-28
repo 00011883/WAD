@@ -2,6 +2,7 @@
 using GamesStore_11883_API.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Transactions;
 
 namespace GamesStore_11883_API.Controllers
@@ -28,7 +29,11 @@ namespace GamesStore_11883_API.Controllers
         public IActionResult Get(int id)
         {
             var game = _gameRepository.GetGameById(id);
-            return new OkObjectResult(game);
+            if(game != null) {
+                return new OkObjectResult(game);
+            }
+
+            return new OkObjectResult(new { message = "No record with such ID", status = 204 });
         }
         // POST: api/Game
         [HttpPost]
@@ -37,7 +42,7 @@ namespace GamesStore_11883_API.Controllers
             using (var scope = new TransactionScope())
             {
                 _gameRepository.InsertGame(game);
-                scope.Complete();
+                CompleteScope(scope);
                 return CreatedAtAction(nameof(Get), new { id = game.ID }, game);
             }
         }
@@ -50,7 +55,7 @@ namespace GamesStore_11883_API.Controllers
                 using (var scope = new TransactionScope())
                 {
                     _gameRepository.UpdateGame(game);
-                    scope.Complete();
+                    CompleteScope(scope);
                     return new OkObjectResult(new { message = "Successfuly Updated", status = 202 });
                 }
             }
@@ -62,6 +67,11 @@ namespace GamesStore_11883_API.Controllers
         {
             _gameRepository.DeleteGame(id);
             return new OkObjectResult( new { message="Successfuly Deteled", status = 204 });
+        }
+
+        public void CompleteScope(TransactionScope scope)
+        {
+            scope.Complete();
         }
     }
 }

@@ -15,13 +15,13 @@ namespace GamesStore_11883_API.Repository
         }
         public void DeleteGame(int gameId)
         {
-            var game = _dbContext.Games.Find(gameId);
+            var game = FindOne(gameId);
             _dbContext.Games.Remove(game);
             Save();
         }
         public Game GetGameById(int gameId)
         {
-            var prod = _dbContext.Games.Find(gameId);
+            var prod = FindOne(gameId);
             // To show from request author of the game just enable the next line
             //_dbContext.Entry(prod).Reference(s => s.Author).Load();
             return prod;
@@ -50,5 +50,9 @@ namespace GamesStore_11883_API.Repository
             _dbContext.SaveChanges();
         }
 
+        public Game FindOne(int id)
+        {
+            return _dbContext.Games.Find(id);
+        }
     }
 }

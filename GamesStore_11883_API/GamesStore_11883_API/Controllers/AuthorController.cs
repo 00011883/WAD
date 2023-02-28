@@ -27,7 +27,11 @@ namespace GamesStore_11883_API.Controllers
         public IActionResult Get(int id)
         {
             var author = _authorRepository.GetAuthorById(id);
-            return new OkObjectResult(author);
+            if (author != null)
+            {
+                return new OkObjectResult(author);
+            }
+            return new OkObjectResult(new { message = "No record with such ID", status = 204 });
         }
         // POST: api/Author
         [HttpPost]
@@ -36,7 +40,7 @@ namespace GamesStore_11883_API.Controllers
             using (var scope = new TransactionScope())
             {
                 _authorRepository.InsertAuthor(author);
-                scope.Complete();
+                CompleteScope(scope);
                 return CreatedAtAction(nameof(Get), new { id = author.ID }, author);
             }
         }
@@ -49,7 +53,7 @@ namespace GamesStore_11883_API.Controllers
                 using (var scope = new TransactionScope())
                 {
                     _authorRepository.UpdateAuthor(author);
-                    scope.Complete();
+                    CompleteScope(scope);
                     return new OkObjectResult(new { message = "Successfuly Updated", status = 202 });
                 }
             }
@@ -61,6 +65,11 @@ namespace GamesStore_11883_API.Controllers
         {
             _authorRepository.DeleteAuthor(id);
             return new OkObjectResult(new { message = "Successfuly Deteled", status = 204 });
+        }
+
+        public void CompleteScope(TransactionScope scope)
+        {
+            scope.Complete();
         }
     }
 }

@@ -15,13 +15,13 @@ namespace GamesStore_11883_API.Repository
         }
         public void DeleteAuthor(int authorid)
         {
-            var author = _dbContext.Authors.Find(authorid);
+            var author = FindOne(authorid);
             _dbContext.Authors.Remove(author);
             Save();
         }
-        public Author GetAuthorById(int Id)
+        public Author GetAuthorById(int id)
         {
-            var author = _dbContext.Authors.Find(Id);
+            var author = FindOne(id);
             return author;
         }
         public IEnumerable<Author> GetAuthor()
@@ -38,10 +38,16 @@ namespace GamesStore_11883_API.Repository
             _dbContext.Entry(author).State = EntityState.Modified;
             Save();
         }
+
         // DRY Principle
         public void Save()
         {
             _dbContext.SaveChanges();
+        }
+
+        public Author FindOne(int id)
+        {
+            return _dbContext.Authors.Find(id);
         }
     }
 }
