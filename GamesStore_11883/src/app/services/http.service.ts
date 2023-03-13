@@ -4,37 +4,47 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class HttpService {
-  private API_URL = 'http://localhost:3000';
+  private API_URL = 'http://localhost:3000'; // TODO : set port from C# project
   constructor(private http: HttpClient) {}
 
   public get<T>(
     url: string,
-    headers: { [key: string]: string } = {},
+    headers: { [key: string]: string } = {}
   ): Observable<T> {
     return this.http.get<T>(this.requestFullPath(url), {
-      headers: new HttpHeaders({ ...this.getHeader, ...headers }),
+      headers: new HttpHeaders({ ...this.getHeader, ...headers })
     });
   }
 
   public post<T, K>(
     url: string,
     body: K,
-    headers: { [key: string]: string } = {},
+    headers: { [key: string]: string } = {}
   ): Observable<T> {
     return this.http.post<T>(this.requestFullPath(url), body, {
-      headers: new HttpHeaders({ ...this.getHeader, ...headers }),
+      headers: new HttpHeaders({ ...this.getHeader, ...headers })
     });
   }
 
   public delete<T>(
     url: string,
-    headers: { [key: string]: string } = {},
+    headers: { [key: string]: string } = {}
   ): Observable<T> {
     return this.http.delete<T>(this.requestFullPath(url), {
-      headers: new HttpHeaders({ ...this.getHeader, ...headers }),
+      headers: new HttpHeaders({ ...this.getHeader, ...headers })
+    });
+  }
+
+  public put<T, K>(
+    url: string,
+    body: K,
+    headers: { [key: string]: string } = {}
+  ): Observable<T> {
+    return this.http.put<T>(this.requestFullPath(url), body, {
+      headers: new HttpHeaders({ ...this.getHeader, ...headers })
     });
   }
 
@@ -42,7 +52,7 @@ export class HttpService {
     return this.API_URL + path;
   }
 
-  get authToken(): string {
+  private get authToken(): string {
     // if (this.cookieService.check('user')) {
     //   const data: SignInResponseData = JSON.parse(
     //     this.cookieService.get('user'),
@@ -55,9 +65,9 @@ export class HttpService {
     return '';
   }
 
-  get getHeader() {
+  private get getHeader() {
     return {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     };
   }
 }
