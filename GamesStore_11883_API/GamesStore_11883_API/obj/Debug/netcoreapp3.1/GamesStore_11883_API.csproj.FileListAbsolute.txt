@@ -39,5 +39,9 @@ D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\ob
 D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\GamesStore_11883_API.genruntimeconfig.cache
 D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\bin\Debug\netcoreapp3.1\DAL_11883.dll
 D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\bin\Debug\netcoreapp3.1\DAL_11883.pdb
-D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\staticwebassets\GamesStore_11883_API.StaticWebAssets.xml
-D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\scopedcss\bundle\GamesStore_11883_API.styles.css
+D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\bin\Debug\netcoreapp3.1\GamesStore_11883_API.StaticWebAssets.xml
+D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\staticwebassets\GamesStore_11883_API.StaticWebAssets.Pack.cache
+D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.GamesStore_11883_API.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.build.GamesStore_11883_API.props
+D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.GamesStore_11883_API.props
+D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.GamesStore_11883_API.props
