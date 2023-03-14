@@ -1438,6 +1438,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "DAL_11883/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.0"
+        },
+        "compile": {
+          "bin/placeholder/DAL_11883.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DAL_11883.dll": {}
+        }
       }
     }
   },
@@ -5103,10 +5116,16 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "DAL_11883/1.0.0": {
+      "type": "project",
+      "path": "../DAL_11883/DAL_11883.csproj",
+      "msbuildProject": "../DAL_11883/DAL_11883.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "DAL_11883 >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.0"
     ]
   },
@@ -5141,7 +5160,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj": {
+              "projectPath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-  private API_URL = 'http://localhost:3000'; // TODO : set port from C# project
+  private API_URL = 'http://localhost:43073/';
   constructor(private http: HttpClient) {}
 
   public get<T>(
