@@ -27,6 +27,16 @@ namespace GamesStore_11883_API
             services.AddControllers();
             services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,8 +46,11 @@ namespace GamesStore_11883_API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("AllowAllOrigins");
 
             app.UseRouting();
+
+            
 
             app.UseAuthorization();
 
