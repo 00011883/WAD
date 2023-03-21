@@ -12,31 +12,31 @@ export class AuthorService {
 
   getGames(): Observable<Author[]> {
     return this.http
-      .get<Author[]>('/Authors')
+      .get<Author[]>('/Author')
       .pipe(take(1), catchError(this.handleError));
   }
 
   getAuthor(id: number): Observable<Author> {
     return this.http
-      .get<Author>(`/Authors/${id}`)
+      .get<Author>(`/Author/${id}`)
       .pipe(take(1), catchError(this.handleError));
   }
 
   createAuthor(author: Author) {
     this.http
-      .post<any, Author>('/Authors', author)
+      .post<any, Author>('/Author', author)
       .pipe(take(1), catchError(this.handleError));
   }
 
   updateAuthor(author: Author) {
     this.http
-      .put<any, Author>(`/Authors/${author.id}`, author)
+      .put<any, Author>(`/Author/${author.id}`, author)
       .pipe(take(1), catchError(this.handleError));
   }
 
   deleteAuthor(id: number) {
     this.http
-      .delete<any>(`/Authors/${id}`)
+      .delete<any>(`/Author/${id}`)
       .pipe(take(1), catchError(this.handleError));
   }
 

@@ -12,31 +12,31 @@ export class GamesService {
 
   getGames(): Observable<Game[]> {
     return this.http
-      .get<Game[]>('/Games')
+      .get<Game[]>('/Game')
       .pipe(take(1), catchError(this.handleError));
   }
 
   getGame(id: number): Observable<Game> {
     return this.http
-      .get<Game>(`/Games/${id}`)
+      .get<Game>(`/Game/${id}`)
       .pipe(take(1), catchError(this.handleError));
   }
 
   createGame(game: Game) {
     this.http
-      .post<any, Game>('/Games', game)
+      .post<any, Game>('/Game', game)
       .pipe(take(1), catchError(this.handleError));
   }
 
   updateGame(game: Game) {
     this.http
-      .put<any, Game>(`/Games/${game.id}`, game)
+      .put<any, Game>(`/Game/${game.id}`, game)
       .pipe(take(1), catchError(this.handleError));
   }
 
   deleteGame(id: number) {
     this.http
-      .delete<any>(`/Games/${id}`)
+      .delete<any>(`/Game/${id}`)
       .pipe(take(1), catchError(this.handleError));
   }
 

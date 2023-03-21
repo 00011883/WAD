@@ -113,11 +113,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.startCounter();
+    this.getGames();
   }
 
   getGames(): void {
     this.sub = this.gamesService.getGames().subscribe((games) => {
       // this.games = games;
+      console.log(games);
       this.cdRef.detectChanges();
     });
   }
@@ -125,7 +127,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   setContent(id: number): void {
     if (id === this.currentSlide) return;
     this.timer = this.timerDuration;
-
     this.currentSlide = id;
   }
   startCounter(): void {
