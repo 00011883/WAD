@@ -1,0 +1,25 @@
+<header class="px-5 w-full flex items-center justify-between">
+  <ul class="flex items-center space-x-4 list-none">
+    <li class="w-10 h-10 cursor-pointer" routerLink="/">
+      <img
+        ngSrc="https://www.pikpng.com/pngl/b/193-1938138_check-it-out-gaming-logo-design-transparent-clipart.png"
+        width="40"
+        height="40"
+        alt="logo"
+        class="w-full h-full bg-cover" />
+    </li>
+    <li
+      class="py-5 cursor-pointer"
+      routerLink="/"
+      routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent">
+      Store
+    </li>
+  </ul>
+  <div class="flex items-center space-x-4" *ngIf="!isAuth; else profile">
+    <div class="cursor-pointer" routerLink="/auth">Login</div>
+    <div class="cursor-pointer" routerLink="/auth">Register</div>
+  </div>
+  <ng-template #profile>
+    <div class="cursor-pointer" routerLink="/profile">Profile</div>
+  </ng-template>
+</header>

@@ -34,76 +34,73 @@ export class AuthService {
   }
 
   register({ username, password }: any): Observable<any> {
-    if (username) {
-      return this.http
-        .post<any, any>('/signup', {
-          username,
-          password
-        })
-        .pipe(
-          take(1),
-          catchError(this.handleError),
-          tap((res) => {
-            if (res && res.success) {
-              const date = new Date();
-              const expires = date.setDate(date.getDate() + 7);
+    return this.http
+      .post<any, any>('/auth', {
+        username,
+        password,
+        register: true
+      })
+      .pipe(
+        take(1),
+        catchError(this.handleError),
+        tap((res) => {
+          if (res && res.success) {
+            const date = new Date();
+            const expires = date.setDate(date.getDate() + 7);
 
-              this.cookieService.set(
-                'user',
-                JSON.stringify({
-                  ...res.result.data,
-                  success: res.success
-                }),
-                {
-                  expires: new Date(expires),
-                  path: '/',
-                  secure: true,
-                  sameSite: 'Strict'
-                }
-              );
-            }
-          })
-        );
-    } else {
-      return throwError(() => new Error('Something went wrong!'));
-    }
+            this.cookieService.set(
+              'user',
+              JSON.stringify({
+                ...res.result.data,
+                success: res.success
+              }),
+              {
+                expires: new Date(expires),
+                path: '/',
+                secure: true,
+                sameSite: 'Strict'
+              }
+            );
+
+            this.router.navigate(['/']);
+          }
+        })
+      );
   }
 
-  signIn({ username, password }: any): Observable<any> {
-    if (username) {
-      //SignInResponse, SignInRequest
-      return this.http
-        .post<any, any>('/in', {
-          username,
-          password
-        })
-        .pipe(
-          take(1),
-          catchError(this.handleError),
-          tap((res) => {
-            if (res && res.success) {
-              const date = new Date();
-              const expires = date.setDate(date.getDate() + 7);
+  login({ username, password }: any): Observable<any> {
+    //SignInResponse, SignInRequest
+    return this.http
+      .post<any, any>('/auth', {
+        username,
+        password
+      })
+      .pipe(
+        take(1),
+        catchError(this.handleError),
+        tap((res) => {
+          if (res && res.success) {
+            const date = new Date();
+            const expires = date.setDate(date.getDate() + 7);
 
-              this.cookieService.set(
-                'user',
-                JSON.stringify({
-                  ...res.result.data,
-                  success: res.success
-                }),
-                {
-                  expires: new Date(expires),
-                  path: '/',
-                  secure: true,
-                  sameSite: 'Strict'
-                }
-              );
-            }
-          })
-        );
-    } else {
-      return throwError(() => new Error('Username or password incorrect!'));
-    }
+            this.cookieService.set(
+              'user',
+              JSON.stringify({
+                ...res.result.data,
+                success: res.success
+              }),
+              {
+                expires: new Date(expires),
+                path: '/',
+                secure: true,
+                sameSite: 'Strict'
+              }
+            );
+
+            this.router.navigate(['/']);
+          }
+        })
+      );
   }
 
   logout(): void {

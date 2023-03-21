@@ -1,4 +1,4 @@
-import { Author } from "./author.model";
+import { Author } from './author.model';
 
 export type Game = {
   id: number;
@@ -7,4 +7,4 @@ export type Game = {
   price: number;
   posterUrl: string;
   author?: Author;
-}
+};

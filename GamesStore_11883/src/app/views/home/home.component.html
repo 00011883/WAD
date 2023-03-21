@@ -1,1 +1,91 @@
-<p>home works!</p>
+<div class="w-full">
+  <div class="w-full flex items-center space-x-2 mb-8">
+    <div class="w-3/4 relative">
+      <ng-container *ngFor="let item of games">
+        <div class="w-full h-[500px] relative" *ngIf="item.id === currentSlide">
+          <img
+            [src]="item.imageUrl"
+            alt="Current Top Games"
+            class="w-full h-full bg-cover bg-center bg-no-repeat object-cover rounded-lg" />
+          <div
+            class="absolute flex flex-col justify-end items-start bottom-0 left-0 p-8 text-white text-base bg-gradient-to-r from-black/70 to-black/0 bg-gradie w-full h-full">
+            <div class="max-w-[150px] h-20 mb-2">
+              <img
+                [src]="item.logoUrl"
+                [alt]="'Logo of the' + item.title"
+                class="w-full h-full object-contain" />
+            </div>
+            <p class="mb-1 max-w-xs">{{ item.shortDescription }}</p>
+            <p class="mb-4 text-xs" *ngIf="item.price !== 0">
+              Starting at <span class="text-base">${{ item.price }}</span>
+            </p>
+            <button
+              class="px-4 py-2 bg-white text-gaming-primary uppercase text-xs rounded">
+              {{ item.price === 0 ? 'Play now' : 'Purchase' }}
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="w-1/4 flex flex-col space-y-2">
+      <ng-container *ngFor="let item of games">
+        <div
+          class="relative rounded hover:bg-[#252525] transition-all"
+          [ngClass]="item.id === currentSlide ? 'bg-[#252525]' : ''">
+          <div
+            class="flex items-center p-2 cursor-pointer relative z-10"
+            (click)="setContent(item.id)">
+            <div class="w-10 mr-3">
+              <img
+                [ngSrc]="item.posterUrl"
+                [alt]="item.title + ' Scene'"
+                width="40"
+                height="60"
+                class="w-full h-full object-cover rounded" />
+            </div>
+            <h3>{{ item.title }}</h3>
+          </div>
+          <div
+            *ngIf="item.id === currentSlide"
+            class="absolute inset-0 bg-[#363636] animate-fill rounded"></div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <h2>Games</h2>
+  <div class="w-full flex items-center space-x-4 mb-8">
+    <div
+      *ngFor="let item of games"
+      class="w-1/5 flex flex-col space-y-2 cursor-pointer">
+      <div class="flex items-center w-full h-78">
+        <img
+          [ngSrc]="item.posterUrl"
+          [alt]="item.title + ' Poster'"
+          width="208"
+          height="312"
+          class="w-full h-full object-cover" />
+      </div>
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.price === 0 ? 'Free' : '$' + item.price }}</p>
+    </div>
+  </div>
+
+  <h2>Coming Soon</h2>
+  <div class="w-full flex items-center space-x-4 mb-8">
+    <div
+      *ngFor="let item of games"
+      class="w-1/5 flex flex-col space-y-2 cursor-pointer">
+      <div class="flex items-center w-full h-78">
+        <img
+          [ngSrc]="item.posterUrl"
+          [alt]="item.title + ' Poster'"
+          width="208"
+          height="312"
+          class="w-full h-full object-cover" />
+      </div>
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.price === 0 ? 'Free' : '$' + item.price }}</p>
+    </div>
+  </div>
+</div>

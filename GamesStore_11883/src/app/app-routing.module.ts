@@ -8,6 +8,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./views/auth/auth.module')
+  },
+  {
     path: 'home',
     loadChildren: () => import('./views/home/home.module')
   },

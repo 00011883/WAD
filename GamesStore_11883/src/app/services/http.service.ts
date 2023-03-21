@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-  private API_URL = 'http://localhost:43073/';
+  private API_URL = 'http://localhost:43073/api';
   constructor(private http: HttpClient) {}
 
   public get<T>(
