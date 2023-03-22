@@ -91,6 +91,3 @@ values (
     1
 )
 go
-
-select *
-from [dbo].[Authors] a join [dbo].[Games] g on g.AuthorID = a.ID
