@@ -23,14 +23,13 @@ namespace GamesStore_11883_API.Repository
         {
             var prod = FindOne(gameId);
             // To show from request author of the game just enable the next line
-            //_dbContext.Entry(prod).Reference(s => s.Author).Load();
+            _dbContext.Entry(prod).Reference(s => s.Author).Load();
             return prod;
         }
         public IEnumerable<Game> GetGames()
         {
-            return _dbContext.Games.ToList();
             // to return entire game with detailed author use the following instead above one
-            // return _dbContext.Games.Include(s => s.Author).ToList();
+            return _dbContext.Games.Include(s => s.Author).ToList();
         }
         public void InsertGame(Game game)
         {
