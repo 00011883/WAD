@@ -1,0 +1,11 @@
+<div *ngIf="isLoading">Loader</div>
+
+<ng-container *ngIf="!isLoading">
+  <p>{{ game.id }}</p>
+  <p>{{ game.name }}</p>
+  <p>{{ game.description }}</p>
+  <p>{{ game.shortDescription }}</p>
+  <p>{{ game.price }}</p>
+  <img [src]="game.logo" alt="" />
+  <img [src]="game.imgUrl" alt="" />
+</ng-container>
