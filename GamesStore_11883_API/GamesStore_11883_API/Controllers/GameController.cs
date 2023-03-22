@@ -67,6 +67,8 @@ namespace GamesStore_11883_API.Controllers
             return new OkObjectResult( new { message="Successfuly Deteled", status = 204 });
         }
 
+        // DRY Principle
+
         public void CompleteScope(TransactionScope scope)
         {
             scope.Complete();
