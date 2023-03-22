@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { gameResolver } from './game.service';
+import { GameComponent } from './game/game.component';
 import { GamesComponent } from './games.component';
 
 @NgModule({
@@ -9,6 +11,12 @@ import { GamesComponent } from './games.component';
         path: '',
         component: GamesComponent,
         data: { animation: 'gamesPage' }
+      },
+      {
+        path: ':id',
+        component: GameComponent,
+        data: { animation: 'gamePage' },
+        resolve: { game: gameResolver }
       }
     ])
   ]
