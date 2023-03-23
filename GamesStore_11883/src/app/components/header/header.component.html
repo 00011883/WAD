@@ -1,5 +1,5 @@
 <header class="px-5 w-full flex items-center justify-between">
-  <ul class="flex items-center space-x-4 list-none">
+  <ul class="flex items-center space-x-4">
     <li class="w-10 h-10 cursor-pointer" routerLink="/">
       <img
         src="https://www.pikpng.com/pngl/b/193-1938138_check-it-out-gaming-logo-design-transparent-clipart.png"
@@ -9,17 +9,34 @@
         class="w-full h-full bg-cover" />
     </li>
     <li
+      *ngFor="let item of nav"
       class="py-5 cursor-pointer"
-      routerLink="/"
-      routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent">
-      Store
+      [routerLink]="item.link"
+      routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
+      [routerLinkActiveOptions]="{ exact: true }">
+      {{ item.title }}
     </li>
   </ul>
-  <div class="flex items-center space-x-4" *ngIf="!isAuth; else profile">
-    <div class="cursor-pointer" routerLink="/auth">Login</div>
-    <div class="cursor-pointer" routerLink="/auth">Register</div>
-  </div>
+  <ul class="flex items-center space-x-4" *ngIf="!isAuth; else profile">
+    <li
+      *ngFor="let item of guestNav"
+      class="py-5 cursor-pointer"
+      [routerLink]="item.link"
+      routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
+      [routerLinkActiveOptions]="{ exact: true }">
+      {{ item.title }}
+    </li>
+  </ul>
   <ng-template #profile>
-    <div class="cursor-pointer" routerLink="/profile">Profile</div>
+    <ul class="flex items-center space-x-4">
+      <li
+        *ngFor="let item of authNav"
+        class="py-5 cursor-pointer"
+        [routerLink]="item.link"
+        routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
+        [routerLinkActiveOptions]="{ exact: true }">
+        {{ item.title }}
+      </li>
+    </ul>
   </ng-template>
 </header>

@@ -9,3 +9,68 @@
 .animate-fill {
   animation: fill 10s linear;
 }
+
+@layer components {
+  .skeleton {
+    @apply opacity-70 animate-skeleton;
+
+    &-field {
+      @apply w-full;
+
+      &:last-child {
+        @apply mb-0;
+      }
+    }
+
+    &-text {
+      @apply w-full;
+
+      &:last-child {
+        @apply w-3/4 mb-0;
+      }
+    }
+
+    &-square {
+      &:last-child {
+        @apply mb-0;
+      }
+    }
+
+    &-block {
+      @apply w-full;
+
+      &:last-child {
+        @apply mb-0;
+      }
+    }
+
+    &-divider {
+      @apply w-full h-px;
+    }
+
+    &-circle {
+      @apply rounded-full;
+    }
+  }
+
+  .input {
+    @apply w-full mb-3 outline-none p-3 rounded-t transition focus:bg-gray-400 bg-transparent border-b border-gaming-primary text-slate-200 focus:text-gray-700 focus:placeholder:text-gray-700;
+  }
+
+  .btn-submit {
+    @apply bg-gaming-primary hover:bg-opacity-75 text-gaming-secondary ring-2 ring-inset ring-offset-pink-500 px-4 py-2 rounded cursor-pointer;
+
+    &-invalid {
+      @apply cursor-not-allowed bg-gray-500 text-slate-300 ring-0;
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}

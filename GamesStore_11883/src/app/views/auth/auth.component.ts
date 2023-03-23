@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-auth',
@@ -7,4 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class AuthComponent {
   remember = false;
+
+  constructor(private CookieService: CookieService, private router: Router) {
+    this.CookieService.get('user') && this.router.navigate(['/']);
+  }
 }

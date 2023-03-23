@@ -10,7 +10,7 @@ import { HttpService } from './http.service';
 export class AuthorService {
   constructor(private http: HttpService) {}
 
-  getGames(): Observable<Author[]> {
+  getAuthors(): Observable<Author[]> {
     return this.http
       .get<Author[]>('/Author')
       .pipe(take(1), catchError(this.handleError));

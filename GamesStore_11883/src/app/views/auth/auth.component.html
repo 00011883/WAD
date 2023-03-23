@@ -1,4 +1,15 @@
-<mat-tab-group dynamicHeight>
+<div
+  class="w-10 h-10 cursor-pointer absolute left-1/2 top-0.5 -translate-x-[calc(50%+10px)] z-10"
+  routerLink="/">
+  <img
+    src="https://www.pikpng.com/pngl/b/193-1938138_check-it-out-gaming-logo-design-transparent-clipart.png"
+    width="40"
+    height="40"
+    alt="logo"
+    class="w-full h-full bg-cover" />
+</div>
+
+<mat-tab-group dynamicHeight class="w-full">
   <mat-tab label="Login">
     <app-auth-form title="Login"></app-auth-form>
   </mat-tab>
