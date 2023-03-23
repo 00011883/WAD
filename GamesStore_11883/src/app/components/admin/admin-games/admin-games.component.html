@@ -1,0 +1,126 @@
+<div
+  class="h-[calc(100vh-216px)] flex justify-center items-start pt-10 space-x-4">
+  <div class="w-1/2 bg-[#202020] p-4 rounded">
+    <h2 class="text-2xl font-bold text-white mb-4">Game</h2>
+    <form (submit)="submit()" [formGroup]="form">
+      <input
+        class="input"
+        placeholder="Name"
+        formControlName="name"
+        type="text" />
+      <input
+        class="input"
+        placeholder="Description"
+        formControlName="description"
+        type="text" />
+      <textarea
+        class="input resize-none"
+        placeholder="Short Description"
+        formControlName="shortDescription"
+        type="text">
+      </textarea>
+      <input
+        class="input"
+        placeholder="Poster Link"
+        formControlName="posterUrl"
+        type="text" />
+      <input
+        class="input"
+        placeholder="Cover Image Link"
+        formControlName="imgUrl"
+        type="text" />
+      <input
+        class="input"
+        placeholder="Logo Link"
+        formControlName="logo"
+        type="text" />
+      <input
+        class="input"
+        placeholder="Price"
+        formControlName="price"
+        type="text" />
+      <div formGroupName="author">
+        <select
+          class="input"
+          formControlName="id"
+          [disabled]="authors.length === 0">
+          <option value="Select Author" selected disabled>Select Author</option>
+          <option *ngFor="let item of authors" [value]="item.id">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          class="btn-submit"
+          [ngClass]="{
+            'btn-submit-invalid': form.invalid
+          }">
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="w-1/2">
+    <mat-tab-group dynamicHeight class="w-full">
+      <mat-tab label="Preview Poster">
+        <div class="p-4 flex flex-col justify-center space-y-3 text-center">
+          <div
+            [ngClass]="{ 'w-52 h-80 mx-auto': this.form.value.posterUrl }"
+            *ngIf="this.form.value.posterUrl">
+            <img
+              [src]="this.form.value.posterUrl"
+              class="w-full h-full object-cover"
+              alt="Poster" />
+          </div>
+          <p>
+            {{
+              this.form.value.posterUrl
+                ? 'The result may vary depending on the size of the image'
+                : 'Enter poster url to preview'
+            }}
+          </p>
+        </div>
+      </mat-tab>
+      <mat-tab label="Preview Cover Image">
+        <div class="p-4 flex flex-col justify-center space-y-3 text-center">
+          <div
+            [ngClass]="{ 'w-fit h-[500px] mx-auto': this.form.value.imgUrl }"
+            *ngIf="this.form.value.imgUrl">
+            <img
+              [src]="this.form.value.imgUrl"
+              alt="Cover image"
+              class="w-full h-full object-contain" />
+          </div>
+          <p>
+            {{
+              this.form.value.imgUrl
+                ? 'The result may vary depending on the size of the image'
+                : 'Enter cover image url to preview'
+            }}
+          </p>
+        </div>
+      </mat-tab>
+      <mat-tab label="Preview Logo">
+        <div class="p-4 flex flex-col justify-center space-y-3 text-center">
+          <div
+            [ngClass]="{ 'max-w-[150px] h-20 mx-auto': this.form.value.logo }"
+            *ngIf="this.form.value.logo">
+            <img
+              [src]="this.form.value.logo"
+              alt="Logo"
+              class="w-full h-full object-contain" />
+          </div>
+          <p>
+            {{
+              this.form.value.logo
+                ? 'The result may vary depending on the size of the image'
+                : 'Enter logo url to preview'
+            }}
+          </p>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
