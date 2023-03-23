@@ -1,3 +1,7 @@
-<ng-container *ngFor="let item of chunk; let i = index">
-  <app-games-row [games]="item"></app-games-row>
-</ng-container>
+<ng-container *ngIf="isLoading; else content">Loading</ng-container>
+
+<ng-template #content>
+  <ng-container *ngFor="let item of chunk; let i = index">
+    <app-games-row [games]="item"></app-games-row>
+  </ng-container>
+</ng-template>

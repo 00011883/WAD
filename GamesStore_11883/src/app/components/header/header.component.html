@@ -30,12 +30,19 @@
   <ng-template #profile>
     <ul class="flex items-center space-x-4">
       <li
-        *ngFor="let item of authNav"
         class="py-5 cursor-pointer"
-        [routerLink]="item.link"
+        [routerLink]="authNav[0].link"
         routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
         [routerLinkActiveOptions]="{ exact: true }">
-        {{ item.title }}
+        {{ authNav[0].title }}
+      </li>
+      <li
+        *ngIf="isAdmin"
+        class="py-5 cursor-pointer"
+        [routerLink]="authNav[1].link"
+        routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
+        [routerLinkActiveOptions]="{ exact: true }">
+        {{ authNav[1].title }}
       </li>
     </ul>
   </ng-template>

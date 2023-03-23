@@ -8,7 +8,6 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HeaderComponent {
   isAuth = false;
-  isAdmin = false;
   nav = [
     {
       title: 'Home',
@@ -42,9 +41,10 @@ export class HeaderComponent {
 
   constructor(private cookieService: CookieService) {}
 
-  ngOnInit() {
+  get isAdmin(): boolean {
     this.isAuth = this.cookieService.check('user');
     const user = this.cookieService.get('user');
-    if (user) this.isAdmin = JSON.parse(user)?.email === 'admin@admin.admin';
+    if (user) return JSON.parse(user)?.email === 'admin@admin.admin';
+    else return false;
   }
 }

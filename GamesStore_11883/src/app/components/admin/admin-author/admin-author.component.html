@@ -1,5 +1,6 @@
-<div class="h-[calc(100vh-216px)] flex justify-center items-center">
-  <div class="w-1/3 bg-[#202020] p-4 rounded">
+<div
+  class="h-[calc(100vh-216px)] flex justify-center items-start pt-10 space-x-4">
+  <div class="w-1/2 bg-[#202020] p-4 rounded">
     <h2 class="text-2xl font-bold text-white mb-4">Author</h2>
     <form (submit)="submit()" [formGroup]="form">
       <input
@@ -28,5 +29,30 @@
         </button>
       </div>
     </form>
+  </div>
+  <div class="w-1/2">
+    <mat-tab-group dynamicHeight class="w-full">
+      <mat-tab label="Preview Poster">
+        <div class="p-4 flex flex-col justify-center space-y-3 text-center">
+          <div
+            [ngClass]="{
+              'w-52 h-52 mx-auto': this.form.value.posterUrl
+            }"
+            *ngIf="this.form.value.posterUrl">
+            <img
+              [src]="this.form.value.posterUrl"
+              class="w-full h-full object-cover"
+              alt="Poster" />
+          </div>
+          <p>
+            {{
+              this.form.value.posterUrl
+                ? 'The result may vary depending on the size of the image'
+                : 'Enter poster url to preview'
+            }}
+          </p>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
