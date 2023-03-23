@@ -18,6 +18,14 @@ const routes: Routes = [
   {
     path: 'games',
     loadChildren: () => import('./views/games/games.module')
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./views/profile/profile.module')
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./views/admin/admin.module')
   }
 ];
 

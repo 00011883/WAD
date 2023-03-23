@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { MaterialModule } from 'src/app/shared/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { GamesComponent } from './games.component';
+import { GamesCarouselComponent } from './games-carousel/games-carousel.component';
+import { GamesComponent } from './games-row/games-row.component';
 
 @NgModule({
-  declarations: [GamesComponent],
-  imports: [SharedModule, MaterialModule],
-  exports: [GamesComponent]
+  declarations: [GamesComponent, GamesCarouselComponent],
+  imports: [SharedModule],
+  exports: [GamesComponent, GamesCarouselComponent]
 })
 export class GamesModule {}

@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{html,scss,ts}'],
   theme: {
     extend: {
+      animation: {
+        skeleton: 'skeleton-loading 1s linear infinite alternate'
+      },
       colors: {
         'gaming-bg': '#121212',
         'gaming-secondary': '#C1C1C1',
