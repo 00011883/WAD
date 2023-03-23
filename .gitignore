@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GamesStore_11883_API/DAL_11883/AppData/GameAPIDB.ldf
+/GamesStore_11883_API/DAL_11883/AppData/GameAPIDB.mdf
