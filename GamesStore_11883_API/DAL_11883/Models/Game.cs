@@ -20,7 +20,6 @@ namespace GamesStore_11883_API.Models
         public string ImgUrl { get; set; }
         [Required]
         public string Logo { get; set; }
-        [Required]
         public Author Author { get; set; }
     }
 }
