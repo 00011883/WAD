@@ -1,14 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { snackBarConfig } from 'src/app/constants/mat.const';
+import { Errors } from 'src/app/types/error.type';
 import { AuthService } from '../../../services/auth.service';
-
-type Errors = {
-  required: boolean;
-  email: boolean;
-  minlength: { actualLength: number; requiredLength: number };
-  maxlength: { actualLength: number; requiredLength: number };
-};
 
 @Component({
   selector: 'app-auth-form',
@@ -23,7 +18,7 @@ export class AuthFormComponent {
     {
       email: new FormControl('', [
         Validators.email,
-        Validators.maxLength(20),
+        Validators.maxLength(30),
         Validators.required
       ]),
       password: new FormControl('', [
@@ -40,13 +35,16 @@ export class AuthFormComponent {
   ) {}
 
   submit(): void {
-    if (!this.form.valid || this.confirm !== this.form.value.password) {
+    if (
+      !this.form.valid ||
+      (this.confirm !== this.form.value.password && this.title === 'Register')
+    ) {
       this.checkValidation();
     } else if (this.form.valid) {
       if (this.title === 'Login') {
-        this._authService.login(this.form.value);
+        this._authService.auth(this.form.value);
       } else if (this.title === 'Register') {
-        this._authService.register(this.form.value);
+        this._authService.auth(this.form.value);
       }
     }
   }
@@ -74,14 +72,14 @@ export class AuthFormComponent {
         } else if (minlength) {
           setTimeout(() => {
             this.openSnackBar(
-              'Password should not be less than 6 characters',
+              keys[val] + ' should not be less than 6 characters',
               'OK'
             );
           }, 3000 * val);
         } else if (maxlength) {
           setTimeout(() => {
             this.openSnackBar(
-              'Email address can not be more than 20 characters',
+              keys[val] + ' can not be more than 30 characters',
               'OK'
             );
           }, 3000 * val);
@@ -94,7 +92,10 @@ export class AuthFormComponent {
         setTimeout(() => {
           this.openSnackBar('Confirm field is required', 'OK');
         }, 0);
-      } else if (this.confirm !== this.form.value.password) {
+      } else if (
+        this.confirm !== '' &&
+        this.confirm !== this.form.value.password
+      ) {
         setTimeout(() => {
           this.openSnackBar('Passwords should match', 'OK');
         }, 0);
@@ -103,8 +104,6 @@ export class AuthFormComponent {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000
-    });
+    this._snackBar.open(message, action, snackBarConfig as MatSnackBarConfig);
   }
 }

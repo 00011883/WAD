@@ -3,18 +3,18 @@
     <h2 class="text-2xl font-bold text-white mb-4">{{ title }}</h2>
     <form (submit)="submit()" [formGroup]="form">
       <input
-        class="w-full mb-3 outline-none p-3 rounded-t transition focus:bg-gray-400 bg-transparent border-b border-gaming-primary text-slate-200 focus:text-gray-700 focus:placeholder:text-gray-700"
+        class="input"
         placeholder="Email"
         formControlName="email"
         type="text" />
       <input
-        class="w-full mb-3 outline-none p-3 rounded-t transition focus:bg-gray-400 bg-transparent border-b border-gaming-primary text-slate-200 focus:text-gray-700 focus:placeholder:text-gray-700"
+        class="input"
         placeholder="Password"
         formControlName="password"
         type="password" />
       <input
         *ngIf="title === 'Register'"
-        class="w-full mb-3 outline-none p-3 rounded-t transition focus:bg-gray-400 bg-transparent border-b border-gaming-primary text-slate-200 focus:text-gray-700 focus:placeholder:text-gray-700"
+        class="input"
         placeholder="Confirm Password"
         [(ngModel)]="confirm"
         [ngModelOptions]="{ standalone: true }"
@@ -22,9 +22,9 @@
       <div class="flex justify-end">
         <button
           type="submit"
-          class="bg-gaming-primary hover:bg-opacity-75 text-gaming-secondary px-4 py-2 rounded cursor-pointer"
+          class="btn-submit"
           [ngClass]="{
-            'cursor-not-allowed bg-gray-500 text-slate-300':
+            'btn-submit-invalid':
               form.invalid ||
               (title === 'Register' && confirm !== form.value.password)
           }">
