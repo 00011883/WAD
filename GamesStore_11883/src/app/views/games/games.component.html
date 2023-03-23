@@ -1,1 +1,3 @@
-<p>games works!</p>
+<ng-container *ngFor="let item of chunk; let i = index">
+  <app-games-row [games]="item"></app-games-row>
+</ng-container>

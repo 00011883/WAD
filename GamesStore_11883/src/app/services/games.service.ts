@@ -22,8 +22,9 @@ export class GamesService {
       .pipe(take(1), catchError(this.handleError));
   }
 
-  createGame(game: Game) {
-    this.http
+  createGame(game: Game): Observable<any> {
+    console.log(game);
+    return this.http
       .post<any, Game>('/Game', game)
       .pipe(take(1), catchError(this.handleError));
   }
