@@ -1,8 +1,6 @@
-<main class="h-screen w-full">
-  <div class="bg-[#252525]" *ngIf="isAuth">
-    <app-header></app-header>
-  </div>
-  <div class="w-full overflow-x-hidden" [ngClass]="{ 'px-16 py-10': isAuth }">
-    <router-outlet></router-outlet>
-  </div>
-</main>
+<div class="bg-[#252525]" *ngIf="isAuth">
+  <app-header></app-header>
+</div>
+<div class="w-full overflow-x-hidden" [ngClass]="{ 'px-16 py-10': isAuth }">
+  <router-outlet></router-outlet>
+</div>
