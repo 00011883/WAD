@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -6,8 +6,9 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isAuth = false;
+  isAdmin = false;
   nav = [
     {
       title: 'Home',
@@ -21,11 +22,11 @@ export class HeaderComponent {
   guestNav = [
     {
       title: 'Login',
-      link: '/auth'
+      link: 'auth'
     },
     {
       title: 'Register',
-      link: '/auth'
+      link: 'auth'
     }
   ];
   authNav = [
@@ -41,10 +42,9 @@ export class HeaderComponent {
 
   constructor(private cookieService: CookieService) {}
 
-  get isAdmin(): boolean {
+  ngOnInit(): void {
     this.isAuth = this.cookieService.check('user');
     const user = this.cookieService.get('user');
-    if (user) return JSON.parse(user)?.email === 'admin@admin.admin';
-    else return false;
+    if (user) this.isAdmin = JSON.parse(user)?.email === 'admin@admin.admin';
   }
 }

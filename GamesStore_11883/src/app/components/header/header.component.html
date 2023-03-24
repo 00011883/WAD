@@ -22,8 +22,7 @@
       *ngFor="let item of guestNav"
       class="py-5 cursor-pointer"
       [routerLink]="item.link"
-      routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
-      [routerLinkActiveOptions]="{ exact: true }">
+      routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent">
       {{ item.title }}
     </li>
   </ul>
@@ -32,16 +31,14 @@
       <li
         class="py-5 cursor-pointer"
         [routerLink]="authNav[0].link"
-        routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
-        [routerLinkActiveOptions]="{ exact: true }">
+        routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent">
         {{ authNav[0].title }}
       </li>
       <li
         *ngIf="isAdmin"
         class="py-5 cursor-pointer"
         [routerLink]="authNav[1].link"
-        routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent"
-        [routerLinkActiveOptions]="{ exact: true }">
+        routerLinkActive="text-white border-y-4 border-b-green-400 border-t-transparent">
         {{ authNav[1].title }}
       </li>
     </ul>
