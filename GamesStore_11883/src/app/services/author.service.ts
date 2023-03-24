@@ -22,7 +22,7 @@ export class AuthorService {
       .pipe(take(1), catchError(this.handleError));
   }
 
-  createAuthor(author: Author) {
+  addAuthor(author: Author) {
     this.http
       .post<any, Author>('/Author', author)
       .pipe(take(1), catchError(this.handleError));

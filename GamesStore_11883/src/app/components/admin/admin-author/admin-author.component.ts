@@ -28,7 +28,7 @@ export class AdminAuthorComponent {
     if (!this.form.valid) {
       this.checkValidation();
     } else if (this.form.valid) {
-      this.authorService.createAuthor(this.form.value);
+      this.authorService.addAuthor(this.form.value);
     }
   }
 

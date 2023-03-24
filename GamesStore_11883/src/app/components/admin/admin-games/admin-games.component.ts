@@ -66,7 +66,7 @@ export class AdminGamesComponent implements OnInit {
           id: Number(this.form.value.author.id)
         }
       });
-      this.gamesService.createGame(this.form.value).subscribe((res) => {
+      this.gamesService.addGame(this.form.value).subscribe((res) => {
         console.log(res);
       });
     }

@@ -8,16 +8,15 @@ describe('GamesCarouselComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GamesCarouselComponent ]
-    })
-    .compileComponents();
+      declarations: [GamesCarouselComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GamesCarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should build', () => {
     expect(component).toBeTruthy();
   });
 });
