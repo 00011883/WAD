@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { canActivateUser } from 'src/app/guards/auth.guard';
+import { GameEditComponent } from './game-edit/game-edit.component';
 import { gameResolver } from './game.service';
 import { GameComponent } from './game/game.component';
 import { GamesComponent } from './games.component';
@@ -18,6 +19,13 @@ import { GamesComponent } from './games.component';
         path: ':id',
         component: GameComponent,
         data: { animation: 'gamePage' },
+        resolve: { game: gameResolver },
+        canActivate: [canActivateUser]
+      },
+      {
+        path: ':id/edit',
+        component: GameEditComponent,
+        data: { animation: 'gameEditPage' },
         resolve: { game: gameResolver },
         canActivate: [canActivateUser]
       }

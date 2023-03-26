@@ -23,21 +23,20 @@ export class GamesService {
   }
 
   addGame(game: Game): Observable<Game> {
-    console.log(game);
     return this.http
       .post<Game, Game>('/Game', game)
       .pipe(take(1), catchError(this.handleError));
   }
 
-  updateGame(game: Game) {
-    this.http
+  updateGame(game: Game): Observable<any> {
+    return this.http
       .put<any, Game>(`/Game/${game.id}`, game)
       .pipe(take(1), catchError(this.handleError));
   }
 
-  deleteGame(id: number) {
-    this.http
-      .delete<any>(`/Game/${id}`)
+  deleteGame(id: number): Observable<{ status: number; message: string }> {
+    return this.http
+      .delete<{ status: number; message: string }>(`/Game/${id}`)
       .pipe(take(1), catchError(this.handleError));
   }
 

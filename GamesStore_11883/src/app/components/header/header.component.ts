@@ -17,6 +17,10 @@ export class HeaderComponent implements OnInit {
     {
       title: 'Games',
       link: '/games'
+    },
+    {
+      title: 'Authors',
+      link: '/authors'
     }
   ];
   guestNav = [

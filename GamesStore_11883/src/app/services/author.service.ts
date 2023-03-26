@@ -22,21 +22,21 @@ export class AuthorService {
       .pipe(take(1), catchError(this.handleError));
   }
 
-  addAuthor(author: Author) {
-    this.http
+  addAuthor(author: Author): Observable<Author> {
+    return this.http
       .post<any, Author>('/Author', author)
       .pipe(take(1), catchError(this.handleError));
   }
 
-  updateAuthor(author: Author) {
-    this.http
+  updateAuthor(author: Author): Observable<any> {
+    return this.http
       .put<any, Author>(`/Author/${author.id}`, author)
       .pipe(take(1), catchError(this.handleError));
   }
 
-  deleteAuthor(id: number) {
-    this.http
-      .delete<any>(`/Author/${id}`)
+  deleteAuthor(id: number): Observable<{ status: number; message: string }> {
+    return this.http
+      .delete<{ status: number; message: string }>(`/Author/${id}`)
       .pipe(take(1), catchError(this.handleError));
   }
 

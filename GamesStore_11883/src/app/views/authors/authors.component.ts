@@ -6,29 +6,29 @@ import {
   OnInit
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Game } from 'src/app/models/game.model';
-import { GamesService } from 'src/app/services/games.service';
+import { Author } from 'src/app/models/author.model';
+import { AuthorService } from 'src/app/services/author.service';
 
 @Component({
-  selector: 'app-games',
-  templateUrl: './games.component.html',
+  selector: 'app-authors',
+  templateUrl: './authors.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GamesComponent implements OnInit, OnDestroy {
-  games: Game[] = [];
-  chunk: Game[][] = [];
+export class AuthorsComponent implements OnInit, OnDestroy {
+  data: Author[] = [];
+  chunk: Author[][] = [];
   isLoading = true;
   sub!: Subscription;
 
   constructor(
-    private gamesService: GamesService,
+    private authorService: AuthorService,
     private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    const data = sessionStorage.getItem('games');
+    const data = sessionStorage.getItem('authors');
     if (data) {
-      this.games = JSON.parse(data);
+      this.data = JSON.parse(data);
       this.makeChunks();
       this.isLoading = false;
     } else {
@@ -38,18 +38,18 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   getGames(): void {
     this.isLoading = true;
-    this.sub = this.gamesService.getGames().subscribe((games) => {
-      this.games = games;
+    this.sub = this.authorService.getAuthors().subscribe((authors) => {
+      this.data = authors;
       this.makeChunks();
-      sessionStorage.setItem('games', JSON.stringify(games));
+      sessionStorage.setItem('authors', JSON.stringify(authors));
       this.isLoading = false;
       this.cdRef.detectChanges();
     });
   }
 
   makeChunks(): void {
-    for (let i = 0; i < this.games.length; i += 5) {
-      this.chunk.push(this.games.slice(i, i + 5));
+    for (let i = 0; i < this.data.length; i += 5) {
+      this.chunk.push(this.data.slice(i, i + 5));
     }
   }
 

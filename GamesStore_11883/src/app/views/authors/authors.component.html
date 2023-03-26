@@ -1,17 +1,9 @@
-<ng-container *ngIf="isLoading; else content">
-  <div class="w-full"></div>
-</ng-container>
+<ng-container *ngIf="isLoading; else content">Loading</ng-container>
 
 <ng-template #content>
-  <div class="w-full">
-    <app-games-carousel [games]="games | slice : 0 : 5"></app-games-carousel>
-    <app-games-row
-      title="Games"
-      [games]="games | slice : 0 : 5"></app-games-row>
-
-    <h2 class="mb-4">Authors</h2>
+  <ng-container *ngFor="let authors of chunk; let i = index">
     <div class="w-full flex items-start justify-between space-x-4 mb-8">
-      <ng-container *ngIf="authors.length === 5; else gamesTemp">
+      <ng-container *ngIf="authors.length === 5; else authorsTemp">
         <div
           *ngFor="let item of authors"
           class="flex flex-col space-y-2 cursor-pointer w-52"
@@ -22,11 +14,11 @@
               [alt]="item.name + ' Poster'"
               class="w-full h-full object-cover" />
           </div>
-          <h2>{{ item.name }}</h2>
+          <h2 class="font-semibold text-lg">{{ item.name }}</h2>
           <p>{{ item.description }}</p>
         </div>
       </ng-container>
-      <ng-template #gamesTemp>
+      <ng-template #authorsTemp>
         <div
           *ngFor="let item of authors"
           class="flex flex-col space-y-2 cursor-pointer w-52"
@@ -37,7 +29,7 @@
               [alt]="item.name + ' Poster'"
               class="w-full h-full object-cover" />
           </div>
-          <h2>{{ item.name }}</h2>
+          <h2 class="font-semibold text-lg">{{ item.name }}</h2>
           <p>{{ item.description }}</p>
         </div>
         <div
@@ -45,5 +37,5 @@
           class="w-52"></div>
       </ng-template>
     </div>
-  </div>
+  </ng-container>
 </ng-template>

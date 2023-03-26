@@ -1,16 +1,36 @@
 <h2 class="mb-4">{{ title }}</h2>
 <div class="w-full flex items-center justify-between space-x-4 mb-8">
-  <div
-    *ngFor="let item of games"
-    class="flex flex-col space-y-2 cursor-pointer"
-    [routerLink]="'/games/' + item.id">
-    <div class="flex items-center w-52 h-80">
-      <img
-        [src]="item.posterUrl"
-        [alt]="item.name + ' Poster'"
-        class="w-full h-full object-cover" />
+  <ng-container *ngIf="games.length === 5; else gamesTemp">
+    <div
+      *ngFor="let item of games"
+      class="flex flex-col space-y-2 cursor-pointer"
+      [routerLink]="'/games/' + item.id">
+      <div class="flex items-center w-52 h-80">
+        <img
+          [src]="item.posterUrl"
+          [alt]="item.name + ' Poster'"
+          class="w-full h-full object-cover" />
+      </div>
+      <h2>{{ item.name }}</h2>
+      <p>{{ item.price === 0 ? 'Free' : '$' + item.price }}</p>
     </div>
-    <h2>{{ item.name }}</h2>
-    <p>{{ item.price === 0 ? 'Free' : '$' + item.price }}</p>
-  </div>
+  </ng-container>
+  <ng-template #gamesTemp>
+    <div
+      *ngFor="let item of games"
+      class="flex flex-col space-y-2 cursor-pointer"
+      [routerLink]="'/games/' + item.id">
+      <div class="flex items-center w-52 h-80">
+        <img
+          [src]="item.posterUrl"
+          [alt]="item.name + ' Poster'"
+          class="w-full h-full object-cover" />
+      </div>
+      <h2>{{ item.name }}</h2>
+      <p>{{ item.price === 0 ? 'Free' : '$' + item.price }}</p>
+    </div>
+    <div
+      *ngFor="let item of [].constructor(5 - games.length).fill(0)"
+      class="w-52"></div>
+  </ng-template>
 </div>

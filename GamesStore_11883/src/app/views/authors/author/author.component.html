@@ -2,28 +2,22 @@
 
 <ng-container *ngIf="!isLoading">
   <div class="flex items-center justify-between">
-    <p>{{ game.name }}</p>
-    <div class="w-20 h-20">
-      <img [src]="game.logo" alt="Logo" class="w-full h-full object-contain" />
-    </div>
+    <p>{{ author.name }}</p>
   </div>
-  <p class="mb-2">{{ game.description }}</p>
+  <p class="mb-2">{{ author.description }}</p>
   <div class="flex justify-end space-x-2 mb-4">
-    <button class="px-3 py-2 rounded bg-gray-700 text-slate-200">
-      {{ game.price === 0 ? 'Play' : 'Purchase ' + game.price }}
-    </button>
     <ng-container>
       <button class="p-2 bg-white rounded w-10 h-10" routerLink="edit">
         <img src="./assets/icons/edit.png" />
       </button>
-      <button class="p-2 bg-red-500 rounded w-10 h-10" (click)="deleteGame()">
+      <button class="p-2 bg-red-500 rounded w-10 h-10" (click)="deleteAuthor()">
         <img src="./assets/icons/trash.png" />
       </button>
     </ng-container>
   </div>
   <div class="w-full">
     <img
-      [src]="game.imgUrl"
+      [src]="author.posterUrl"
       alt=""
       class="w-full h-full object-cover rounded" />
   </div>

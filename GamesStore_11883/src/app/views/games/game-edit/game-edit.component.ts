@@ -1,28 +1,27 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Game } from 'src/app/models/game.model';
-import { GamesService } from 'src/app/services/games.service';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
+  selector: 'app-game-edit',
+  templateUrl: './game-edit.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GameComponent implements OnInit, OnDestroy {
+export class GameEditComponent implements OnInit, OnDestroy {
   isLoading = true;
   game!: Game;
   sub!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    private gamesService: GamesService,
-    private router: Router
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -34,15 +33,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.sub = this.route.data.subscribe(({ game }) => {
       this.game = game;
       this.isLoading = false;
-    });
-  }
-
-  deleteGame(): void {
-    this.gamesService.deleteGame(this.game.id).subscribe((res) => {
-      if (res.status === 204) {
-        sessionStorage.removeItem('games');
-        this.router.navigate(['/games']);
-      }
+      this.cdRef.detectChanges();
     });
   }
 

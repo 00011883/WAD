@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./views/games/games.module')
   },
   {
+    path: 'authors',
+    loadChildren: () => import('./views/authors/authors.module')
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./views/profile/profile.module')
   },

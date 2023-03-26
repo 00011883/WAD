@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   get isAuth(): boolean {
-    return !this.router.url.includes('auth');
+    return this.router.url !== '/auth';
   }
 
   ngOnDestroy(): void {

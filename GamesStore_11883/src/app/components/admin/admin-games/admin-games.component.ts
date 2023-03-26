@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { snackBarConfig } from 'src/app/constants/mat.const';
 import { Author } from 'src/app/models/author.model';
+import { Game } from 'src/app/models/game.model';
 import { AuthorService } from 'src/app/services/author.service';
 import { Errors } from 'src/app/types/error.type';
 import { GamesService } from './../../../services/games.service';
@@ -13,7 +19,10 @@ import { GamesService } from './../../../services/games.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminGamesComponent implements OnInit {
+  @Input() edit = false;
+  @Input() game!: Game;
   authors: Author[] = [];
+  defaultAuthor = 'Select Author';
   form: FormGroup = new FormGroup(
     {
       name: new FormControl('', [Validators.minLength(5), Validators.required]),
@@ -36,7 +45,7 @@ export class AdminGamesComponent implements OnInit {
       logo: new FormControl('', [Validators.minLength(5), Validators.required]),
       price: new FormControl(0, [Validators.required]),
       author: new FormGroup({
-        id: new FormControl(0, [Validators.required])
+        id: new FormControl(this.defaultAuthor, [Validators.required])
       })
     },
     { updateOn: 'change' }
@@ -49,27 +58,58 @@ export class AdminGamesComponent implements OnInit {
 
   ngOnInit(): void {
     this.authorService.getAuthors().subscribe((authors) => {
-      console.log(authors);
-      this.authors = authors;
+      authors && (this.authors = authors);
     });
+    if (this.edit) {
+      this.form.patchValue(this.game);
+    }
   }
 
   submit() {
     if (!this.form.valid) {
       this.checkValidation();
+    } else if (this.form.value.author.id === this.defaultAuthor) {
+      this._snackBar.open('Please select an author', 'OK');
     } else if (this.form.valid) {
-      console.log(this.form.value);
-      console.log(Number(this.form.value.price));
       this.form.patchValue({
         price: Number(this.form.value.price),
         author: {
           id: Number(this.form.value.author.id)
         }
       });
-      this.gamesService.addGame(this.form.value).subscribe((res) => {
-        console.log(res);
-      });
+      if (this.edit) {
+        this.updateGame();
+      } else {
+        this.addGame();
+      }
     }
+  }
+
+  updateGame() {
+    const sub = this.gamesService
+      .updateGame({ ...this.form.value, id: this.game.id })
+      .subscribe((res) => {
+        if (res) {
+          this._snackBar.open('Game updated successfully', 'OK');
+          sessionStorage.removeItem('games');
+        }
+      });
+    setTimeout(() => {
+      sub && sub.unsubscribe();
+    }, 5000);
+  }
+
+  addGame() {
+    const sub = this.gamesService.addGame(this.form.value).subscribe((res) => {
+      if (res) {
+        this._snackBar.open('Game added successfully', 'OK');
+        this.form.reset();
+        sessionStorage.removeItem('games');
+      }
+    });
+    setTimeout(() => {
+      sub && sub.unsubscribe();
+    }, 5000);
   }
 
   checkValidation() {

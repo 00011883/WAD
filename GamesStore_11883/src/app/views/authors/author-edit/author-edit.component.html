@@ -1,0 +1,4 @@
+<div *ngIf="isLoading; else authorContent">Loader</div>
+<ng-template #authorContent>
+  <app-admin-author [edit]="true" [author]="author"></app-admin-author>
+</ng-template>

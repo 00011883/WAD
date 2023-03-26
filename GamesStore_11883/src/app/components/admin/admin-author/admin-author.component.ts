@@ -1,16 +1,24 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { snackBarConfig } from 'src/app/constants/mat.const';
+import { Author } from 'src/app/models/author.model';
+import { AuthorService } from 'src/app/services/author.service';
 import { Errors } from 'src/app/types/error.type';
-import { AuthorService } from './../../../services/author.service';
 
 @Component({
   selector: 'app-admin-author',
   templateUrl: './admin-author.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdminAuthorComponent {
+export class AdminAuthorComponent implements OnInit {
+  @Input() edit = false;
+  @Input() author!: Author;
   form: FormGroup = new FormGroup(
     {
       name: new FormControl('', [Validators.minLength(5), Validators.required]),
@@ -24,12 +32,51 @@ export class AdminAuthorComponent {
     private _snackBar: MatSnackBar
   ) {}
 
+  ngOnInit(): void {
+    if (this.edit) {
+      this.form.patchValue(this.author);
+    }
+  }
+
   submit() {
     if (!this.form.valid) {
       this.checkValidation();
     } else if (this.form.valid) {
-      this.authorService.addAuthor(this.form.value);
+      if (this.edit) {
+        this.updateAuthor();
+      } else {
+        this.addAuthor();
+      }
     }
+  }
+
+  updateAuthor(): void {
+    const sub = this.authorService
+      .updateAuthor({ ...this.form.value, id: this.author.id })
+      .subscribe((res) => {
+        if (res) {
+          this.openSnackBar('Author updated successfully', 'OK');
+          sessionStorage.removeItem('authors');
+        }
+      });
+    setTimeout(() => {
+      sub && sub.unsubscribe();
+    }, 5000);
+  }
+
+  addAuthor(): void {
+    const sub = this.authorService
+      .addAuthor(this.form.value)
+      .subscribe((res) => {
+        if (res) {
+          this.openSnackBar('Author added successfully', 'OK');
+          this.form.reset();
+          sessionStorage.removeItem('authors');
+        }
+      });
+    setTimeout(() => {
+      sub && sub.unsubscribe();
+    }, 5000);
   }
 
   checkValidation() {
