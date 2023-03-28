@@ -12,7 +12,7 @@
     <button class="px-3 py-2 rounded bg-gray-700 text-slate-200">
       {{ game.price === 0 ? 'Play' : 'Purchase ' + game.price }}
     </button>
-    <ng-container>
+    <ng-container *ngIf="isAdmin">
       <button class="p-2 bg-white rounded w-10 h-10" routerLink="edit">
         <img src="./assets/icons/edit.png" />
       </button>

@@ -5,7 +5,7 @@
     <p>{{ author.name }}</p>
   </div>
   <p class="mb-2">{{ author.description }}</p>
-  <div class="flex justify-end space-x-2 mb-4">
+  <div class="flex justify-end space-x-2 mb-4" *ngIf="isAdmin">
     <ng-container>
       <button class="p-2 bg-white rounded w-10 h-10" routerLink="edit">
         <img src="./assets/icons/edit.png" />

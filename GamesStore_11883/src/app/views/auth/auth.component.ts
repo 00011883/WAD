@@ -8,8 +8,6 @@ import { CookieService } from 'ngx-cookie-service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent {
-  remember = false;
-
   constructor(private CookieService: CookieService, private router: Router) {
     this.CookieService.get('user') && this.router.navigate(['/']);
   }

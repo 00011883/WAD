@@ -12,15 +12,13 @@ import { authorResolver } from './authors.service';
       {
         path: '',
         component: AuthorsComponent,
-        data: { animation: 'authorsPage' },
-        canActivate: [canActivateUser]
+        data: { animation: 'authorsPage' }
       },
       {
         path: ':id',
         component: AuthorComponent,
         data: { animation: 'authorPage' },
-        resolve: { author: authorResolver },
-        canActivate: [canActivateUser]
+        resolve: { author: authorResolver }
       },
       {
         path: ':id/edit',

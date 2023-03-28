@@ -5,6 +5,7 @@ import {
   OnInit
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { Author } from 'src/app/models/author.model';
 import { AuthorService } from 'src/app/services/author.service';
@@ -19,14 +20,18 @@ export class AuthorComponent implements OnInit, OnDestroy {
   isLoading = true;
   author!: Author;
   sub!: Subscription;
+  isAdmin = false;
 
   constructor(
     private route: ActivatedRoute,
     private authorService: AuthorService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
+    const user = this.cookieService.get('user');
+    if (user) this.isAdmin = JSON.parse(user)?.email === 'admin@admin.admin';
     this.loadAuthor();
   }
 

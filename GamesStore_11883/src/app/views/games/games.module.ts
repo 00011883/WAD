@@ -12,15 +12,13 @@ import { GamesComponent } from './games.component';
       {
         path: '',
         component: GamesComponent,
-        data: { animation: 'gamesPage' },
-        canActivate: [canActivateUser]
+        data: { animation: 'gamesPage' }
       },
       {
         path: ':id',
         component: GameComponent,
         data: { animation: 'gamePage' },
-        resolve: { game: gameResolver },
-        canActivate: [canActivateUser]
+        resolve: { game: gameResolver }
       },
       {
         path: ':id/edit',

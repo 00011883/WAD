@@ -5,6 +5,7 @@ import {
   OnInit
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { Game } from 'src/app/models/game.model';
 import { GamesService } from 'src/app/services/games.service';
@@ -18,14 +19,18 @@ export class GameComponent implements OnInit, OnDestroy {
   isLoading = true;
   game!: Game;
   sub!: Subscription;
+  isAdmin = false;
 
   constructor(
     private route: ActivatedRoute,
     private gamesService: GamesService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
+    const user = this.cookieService.get('user');
+    if (user) this.isAdmin = JSON.parse(user)?.email === 'admin@admin.admin';
     this.loadGame();
   }
 
