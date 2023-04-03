@@ -16,6 +16,11 @@ namespace GamesStore_11883_API.Repository
         public void DeleteAuthor(int authorid)
         {
             var author = FindOne(authorid);
+            var games = _dbContext.Games.Where(g => g.Author.ID == authorid);
+            if (games.Any())
+            {
+                _dbContext.Games.RemoveRange(games);
+            }
             _dbContext.Authors.Remove(author);
             Save();
         }
