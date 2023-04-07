@@ -5136,11 +5136,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\CW\\WAD\\GamesStore_11883_API\\GamesStore_11883_API\\GamesStore_11883_API.csproj",
+      "projectUniqueName": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD_11883\\WAD_Application_11883\\GamesStore_11883_API\\GamesStore_11883_API\\GamesStore_11883_API.csproj",
       "projectName": "GamesStore_11883_API",
-      "projectPath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\CW\\WAD\\GamesStore_11883_API\\GamesStore_11883_API\\GamesStore_11883_API.csproj",
+      "projectPath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD_11883\\WAD_Application_11883\\GamesStore_11883_API\\GamesStore_11883_API\\GamesStore_11883_API.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\CW\\WAD\\GamesStore_11883_API\\GamesStore_11883_API\\obj\\",
+      "outputPath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD_11883\\WAD_Application_11883\\GamesStore_11883_API\\GamesStore_11883_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5161,8 +5161,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\CW\\WAD\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj": {
-              "projectPath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\CW\\WAD\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj"
+            "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD_11883\\WAD_Application_11883\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj": {
+              "projectPath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD_11883\\WAD_Application_11883\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj"
             }
           }
         }
