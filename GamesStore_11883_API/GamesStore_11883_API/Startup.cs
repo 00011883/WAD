@@ -6,11 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace GamesStore_11883_API
 {
     public class Startup
     {
+        private const string DataDirectory = "|DataDirectory|";
+        private string _appPath;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -22,8 +25,10 @@ namespace GamesStore_11883_API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<GameContext>(o => o.UseSqlServer(Configuration.GetConnectionString
-            ("GameAPIDB")));
+            services.AddDbContext<GameContext>(
+                o => o.UseSqlServer(Configuration.GetConnectionString("GameAPIDB")
+                .Replace(DataDirectory, _appPath))
+                );
             services.AddControllers();
             services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
@@ -42,6 +47,8 @@ namespace GamesStore_11883_API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            _appPath = Path.Combine(env.ContentRootPath, "AppData");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

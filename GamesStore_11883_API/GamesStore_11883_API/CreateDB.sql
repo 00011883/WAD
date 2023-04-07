@@ -1,6 +1,6 @@
 ﻿/*
 Connection string:
-Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=GameAPIDB;Integrated Security=True;AttachDbFilename=|DataDirectory|\GameAPIdB.mdf
+Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=GameAPIDB;Integrated Security=True;AttachDbFilename=|DataDirectory|\GameAPIDB.mdf
 */
 
 /*
@@ -8,7 +8,8 @@ Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=GameAPIDB;Integrated Security
 @DataDirectory - path to the directory where LocalDb database should be created (should not end with back slash "\")
 InsIde your VS.NET project create folder "AppData" and set @DataDirectory to the full path of this directory  
 */
-declare @DataDirectory varchar(2000) = 'D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\DAL_11883\AppData\'
+
+declare @DataDirectory varchar(2000) = 'D:\Games\MyFolder\WIUT\lvl5\wad\WAD\GamesStore_11883_API\GamesStore_11883_API\AppData'
 
 declare @sql nvarchar(max) = 'CREATE DATABASE GameAPIDB          
         ON PRIMARY (
@@ -27,8 +28,6 @@ GO
 /*******************************************************************************
    Create Tables
 ********************************************************************************/
-GO
-set language english;
 GO
 CREATE TABLE [dbo].[Authors]
 (
