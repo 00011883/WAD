@@ -6,9 +6,11 @@ import { AuthModule } from './auth/auth.module';
 import { GamesModule } from './games/games.module';
 import { HeaderComponent } from './header/header.component';
 
+const arr = [GamesModule, AuthModule, SharedModule, AdminModule];
+
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [MaterialModule, GamesModule, AuthModule, SharedModule, AdminModule],
-  exports: [GamesModule, AuthModule, SharedModule, AdminModule, HeaderComponent]
+  imports: [MaterialModule, ...arr],
+  exports: [HeaderComponent, ...arr]
 })
 export class ComponentsModule {}

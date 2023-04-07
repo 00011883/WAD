@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+const arr = [CommonModule, RouterModule, FormsModule, ReactiveFormsModule];
+
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
-  exports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule]
+  imports: arr,
+  exports: arr
 })
 export class SharedModule {}
