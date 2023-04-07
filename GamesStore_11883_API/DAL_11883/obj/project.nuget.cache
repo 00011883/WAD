@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N/J9BeMAITajx0MHWTNwAf09UAE9LJlZP2zLclekIUwl65YnXrI88kb7YC7MqYluCpayqcyng0xvZfhsnsjfsQ==",
+  "dgSpecHash": "5xoYvGrEFYEmvz4TNV02A8xU+FszqAZRGZgc2VejSg5u5EvwfEazIUpt0ok6zZLhXCdfs3OAH4yAy82706pklg==",
   "success": true,
-  "projectFilePath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\WAD\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj",
+  "projectFilePath": "D:\\Games\\MyFolder\\WIUT\\lvl5\\wad\\CW\\WAD\\GamesStore_11883_API\\DAL_11883\\DAL_11883.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
