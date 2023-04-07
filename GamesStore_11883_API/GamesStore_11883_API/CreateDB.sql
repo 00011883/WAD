@@ -115,7 +115,7 @@ VALUES (
     'A story-driven, open world RPG set in a visually stunning fantasy universe full of meaningful choices and impactful consequences.', 
     19.99, 
     'https://picfiles.alphacoders.com/198/thumb-198636.jpg',
-    'https://imagenes.20minutos.es/files/image_990_v3/uploads/imagenes/2015/05/25/the_witcher_3_wild_hunt_wIde_wallpaper-1920x12001.jpg',
+    'https://pbs.twimg.com/media/FnfVL5SXkAAKXBc.png:large',
     'https://upload.wikimedia.org/wikipedia/fr/thumb/4/44/The_Witcher_3_Wild_Hunt_Logo.png/2560px-The_Witcher_3_Wild_Hunt_Logo.png',
     3
 )
